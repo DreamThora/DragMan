@@ -2,9 +2,11 @@
 #include <iostream>
 int main()
 {
+    int m1p = 99, m2p = -1, m3p = 99;
     sf::Clock Clock;
     float time1=0;
     float timemon = 0;
+    float timemonrun = 0;
     float warpcooldown = 0;
     float itemspeedtime = 0;
     float itemspeed = 0;
@@ -191,7 +193,7 @@ int main()
         sf::RectangleShape mobspawn(sf::Vector2f(169.f, 94.f));
         mobspawn.setPosition(251.f, 376.f);
         mobspawn.setFillColor(sf::Color::Blue);
-        sf::RectangleShape characcheckchon(sf::Vector2f(26.f, 34.f));
+        sf::RectangleShape characcheckchon(sf::Vector2f(26.f, 36.f));
         sf::Texture redmon;
         if (!redmon.loadFromFile("image/monred1.png"))
         {
@@ -213,21 +215,21 @@ int main()
         int monredSizeY = redmon.getSize().y / 1;
         mon1.setTextureRect(sf::IntRect(0, 0, monredSizeX, monredSizeY));
         mon1.setPosition(265.f, 400.f);
-        mon1.setScale(sf::Vector2f(.25f, .25f));
+        mon1.setScale(sf::Vector2f(.21f, .2f));
         sf::Sprite mon2;
         mon2.setTexture(pinkmon);
         int monpinkSizeX = pinkmon.getSize().x / 4;
         int monpinkSizeY = pinkmon.getSize().y / 1;
         mon2.setTextureRect(sf::IntRect(0, 0, monpinkSizeX, monpinkSizeY));
         mon2.setPosition(315.f, 400.f);
-        mon2.setScale(sf::Vector2f(.25f, .245f));
+        mon2.setScale(sf::Vector2f(.21f, .205f));
         sf::Sprite mon3;
         mon3.setTexture(orangemon);
         int monorangeSizeX = orangemon.getSize().x / 4;
         int monorangeSizeY = orangemon.getSize().y / 1;
         mon3.setTextureRect(sf::IntRect(0, 0, monorangeSizeX, monorangeSizeY));
         mon3.setPosition(363.f, 400.f);
-        mon3.setScale(sf::Vector2f(.24f, .24f));
+        mon3.setScale(sf::Vector2f(.2f, .2f));
         int monterFrame=0;
         sf::Texture energydrink;
         if (!energydrink.loadFromFile("image/sprite.png"))
@@ -239,7 +241,7 @@ int main()
         {
             Sprite[i].setTexture(energydrink);
             Sprite[i].setTextureRect(sf::IntRect(142, 19, 213, 461));
-            Sprite[i].setScale(0.1f, 0.085f);
+            Sprite[i].setScale(0.09f, 0.065f);
         }
         Sprite[0].setPosition(216.f, 659.f);
         Sprite[1].setPosition(431.f, 659.f);
@@ -315,13 +317,14 @@ int main()
         sf::sleep;
         sf::Event event;
         Clock.restart();
-        window.draw(characcheckchon);
-        window.draw(rec1); window.draw(rec2); window.draw(rec4); window.draw(rec3); window.draw(rec5); window.draw(rec6); window.draw(rec7); window.draw(rec8); 
-        window.draw(rec11); window.draw(rec13); window.draw(rec9); window.draw(rec10); window.draw(rec12); window.draw(rec14); window.draw(rec15); 
-        window.draw(rec16); window.draw(rec21); window.draw(rec17); window.draw(rec20); window.draw(rec18); 
-        window.draw(rec22);window.draw(rec24); window.draw(rec25); window.draw(rec27); window.draw(rec19); window.draw(rec23); window.draw(rec26); window.draw(rec28); window.draw(rec35); window.draw(rec31);
-        window.draw(rec32); window.draw(rec30); window.draw(rec34); window.draw(rec29); window.draw(rec33);
+        
+        
         window.draw(mobspawn); 
+        window.draw(rec1); window.draw(rec2); window.draw(rec4); window.draw(rec3); window.draw(rec5); window.draw(rec6); window.draw(rec7); window.draw(rec8);
+        window.draw(rec11); window.draw(rec13); window.draw(rec9); window.draw(rec10); window.draw(rec12); window.draw(rec14); window.draw(rec15);
+        window.draw(rec16); window.draw(rec21); window.draw(rec17); window.draw(rec20); window.draw(rec18);
+        window.draw(rec22); window.draw(rec24); window.draw(rec25); window.draw(rec27); window.draw(rec19); window.draw(rec23); window.draw(rec26); window.draw(rec28); window.draw(rec35); window.draw(rec31);
+        window.draw(rec32); window.draw(rec30); window.draw(rec34); window.draw(rec29); window.draw(rec33);
         characcheckchon.setPosition(shapeSprite.getPosition().x, shapeSprite.getPosition().y);
         while (window.pollEvent(event))
         {
@@ -343,6 +346,7 @@ int main()
             closeleftportal.setPosition(-100.f, 400.f);
             closerightportal.setPosition(800.f, 400.f);
         }
+        
         window.draw(leftportal);
         window.draw(rightportal);
         window.draw(closerightportal);
@@ -360,7 +364,6 @@ int main()
         window.display();
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
-
             shapeSprite.move(time.asSeconds() * (100.f + itemspeed), 0.f);
             shapeSprite.setTextureRect(sf::IntRect(65 + (19 * animationFrame), 56, 19, 27));
             time1 += 0.001;
@@ -373,47 +376,46 @@ int main()
                 }
                 time1 = 0;
             }
-            if (rec1.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec2.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec3.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec4.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec5.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec6.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec7.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec8.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec9.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec10.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec11.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec12.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec13.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec14.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec15.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec16.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec17.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec18.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec19.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec20.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec21.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec22.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec23.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec24.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec25.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec26.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec27.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec28.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec29.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec30.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec31.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec32.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec33.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec34.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if (rec35.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            if(mobspawn.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
-            characcheckchon.setPosition(shapeSprite.getPosition().x, shapeSprite.getPosition().y);
+            if (rec1.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec2.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec3.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec4.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec5.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec6.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec7.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec8.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec9.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec10.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec11.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec12.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec13.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec14.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec15.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec16.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec17.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec18.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec19.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec20.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec21.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec22.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec23.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec24.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec25.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec26.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec27.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec28.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec29.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec30.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec31.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec32.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec33.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec34.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec35.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (mobspawn.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(-shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
-
             shapeSprite.move(-time.asSeconds() * (100.f + itemspeed), 0.f);
             shapeSprite.setTextureRect(sf::IntRect(65 + (19 * animationFrame), 87, 19, 27));
             time1 += 0.001;
@@ -427,43 +429,42 @@ int main()
                 time1 = 0;
 
             }
-            if (rec1.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed)+ 0.1f, 0.f);
-            if (rec2.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed)+ 0.1f, 0.f);
-            if (rec3.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed)+ 0.1f, 0.f);
-            if (rec4.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed)+ 0.1f, 0.f);
-            if (rec5.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed)+ 0.1f, 0.f);
-            if (rec6.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed)+ 0.1f, 0.f);
-            if (rec7.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed)+ 0.1f, 0.f);
-            if (rec8.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed)+0.1f, 0.f);
-            if (rec9.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed)+0.1f, 0.f);
-            if (rec10.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec11.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec12.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec13.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec14.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec15.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec16.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec17.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec18.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec19.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec20.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec21.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec22.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec23.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec24.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec25.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec26.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec27.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec28.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec29.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec30.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec31.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec32.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec33.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec34.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (rec35.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            if (mobspawn.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(time.asSeconds() * (100.f + itemspeed) + 0.1f, 0.f);
-            characcheckchon.setPosition(shapeSprite.getPosition().x, shapeSprite.getPosition().y);
+            if (rec1.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec2.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec3.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec4.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec5.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec6.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec7.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec8.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec9.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec10.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec11.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec12.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec13.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec14.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec15.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec16.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec17.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec18.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec19.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec20.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec21.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec22.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec23.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec24.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec25.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec26.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec27.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec28.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec29.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec30.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec31.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec32.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec33.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec34.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (rec35.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
+            if (mobspawn.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(shapeSprite.getGlobalBounds().width * 0.2f, 0.f);
 
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -481,43 +482,42 @@ int main()
                     time1 = 0;
 
                 }
-                if (rec1.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec2.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec3.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec4.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec5.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec6.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec7.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec8.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec9.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec10.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec11.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec12.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec13.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec14.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec15.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec16.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec17.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec18.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec19.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec20.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec21.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec22.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec23.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec24.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec25.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec26.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec27.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec28.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec29.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec30.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec31.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec32.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec33.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec34.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (rec35.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                if (mobspawn.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, time.asSeconds() * (100.f + itemspeed));
-                characcheckchon.setPosition(shapeSprite.getPosition().x, shapeSprite.getPosition().y);
+                if (rec1.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec2.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec3.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec4.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec5.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec6.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec7.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec8.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec9.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec10.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec11.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec12.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec13.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec14.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec15.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec16.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec17.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec18.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec19.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec20.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec21.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec22.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec23.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec24.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec25.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec26.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec27.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec28.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec29.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec30.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec31.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec32.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec33.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec34.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (rec35.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
+                if (mobspawn.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, shapeSprite.getGlobalBounds().height * 0.2f);
 
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -534,43 +534,43 @@ int main()
                 }
                 time1 = 0;
             }
-            if (rec1.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec2.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec3.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec4.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec5.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec6.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec7.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec8.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec9.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec10.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec11.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec12.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec13.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec14.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec15.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec16.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec17.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec18.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec19.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec20.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec21.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec22.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec23.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec24.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec25.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec26.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec27.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec28.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec29.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec30.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec31.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec32.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec33.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec34.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (rec35.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            if (mobspawn.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -time.asSeconds() * (100.f + itemspeed));
-            characcheckchon.setPosition(shapeSprite.getPosition().x, shapeSprite.getPosition().y);
+            if (rec1.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec2.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec3.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec4.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec5.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec6.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec7.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec8.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec9.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec10.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec11.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec12.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec13.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec14.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec15.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec16.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec17.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec18.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec19.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec20.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec21.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec22.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec23.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec24.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec25.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec26.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec27.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec28.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec29.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec30.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec31.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec32.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec33.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec34.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (rec35.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+            if (mobspawn.getGlobalBounds().intersects(characcheckchon.getGlobalBounds())) shapeSprite.move(0.f, -shapeSprite.getGlobalBounds().height * 0.2f);
+
         }
         //LEFT collision
         if (shapeSprite.getPosition().x < 12.f) 
@@ -627,7 +627,123 @@ int main()
             itemspeed = 75;
         }
         else itemspeed = 0;
-        //printf("%.f %.f \n", shapeSprite.getPosition().x, shapeSprite.getPosition().y);
+        timemonrun += time.asSeconds();
+        
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        {
+            mon2.move(0.f, -0.15f);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        {
+            mon2.move(-.15f, 0.f);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        {
+            mon2.move(0.f, 0.15f);
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        {
+            mon2.move(.15f, 0.f);
+        }
+        
+        //mon2
+       
+        if (m2p == -1) mon2.move(0.f, -0.15f);
+        if (m2p == -1 && mon2.getPosition().y > 332.f && mon2.getPosition().y < 335)m2p = 0;
+        if (m2p == 0 && shapeSprite.getPosition().x > 324.f) m2p = 11;
+        if (m2p == 0 && shapeSprite.getPosition().x < 324.f) m2p = 12;
+        if (m2p == 11)mon2.move(0.15f, 0.f);
+        if (m2p == 11 && (mon2.getPosition().x > 417.f && mon2.getPosition().x < 422.f)) m2p = 21;//ขวา
+        if (m2p == 12)mon2.move(-0.15f, 0.f);
+        if (m2p == 12 && (mon2.getPosition().x > 204.f && mon2.getPosition().x < 207.f)) m2p = 22;//ซ้าย
+        if (m2p == 21 || m2p == 22) mon2.move(0.f, 0.15f);
+        if (m2p == 21 && mon2.getPosition().y > 400.f && mon2.getPosition().y < 406.f)m2p = 31;
+        if (m2p == 31) mon2.move(0.f, 0.15f);
+        if (m2p == 31 && mon2.getPosition().y < 548 && mon2.getPosition().y>543)m2p = 41;
+        if (m2p == 41)mon2.move(0.15f, 0.f);
+        if (m2p == 41 && mon2.getPosition().x > 492.f && mon2.getPosition().x < 495.f)m2p = 61;
+        if (m2p == 61 && shapeSprite.getPosition().y > mon2.getPosition().y)m2p = 612;
+        if (m2p == 612)mon2.move(0.f, 0.15f);
+        if (m2p == 612 && mon2.getPosition().y > 689 && mon2.getPosition().y < 692)m2p = 151;
+        if (m2p == 151)mon2.move(0.15f, 0.f);
+        if (m2p == 151 && mon2.getPosition().x > 615 && mon2.getPosition().x < 617)m2p = 161;
+        if (m2p == 161)mon2.move(0.f, 0.15f);
+        if (m2p == 161 && mon2.getPosition().y > 764 && mon2.getPosition().y < 766)m2p = 171;
+        if (m2p == 171)mon2.move(-0.15f, 0.f);
+        if (m2p == 171 && mon2.getPosition().x > 349 && mon2.getPosition().x < 351)m2p = 181;
+        if (m2p == 181)mon2.move(0.f, -0.15f);
+        if (m2p == 181 && mon2.getPosition().y > 694 && mon2.getPosition().y < 697)m2p = 191;
+        if (m2p == 191)mon2.move(0.15f, 0.f);
+        if (m2p == 191 && mon2.getPosition().x > 419 && mon2.getPosition().x < 421)m2p = 201;
+        if (m2p == 201)mon2.move(0.f, -0.15f);
+        if (m2p == 201 && mon2.getPosition().y > 618 && mon2.getPosition().y < 620)m2p = 211;
+        if (m2p == 211)mon2.move(-0.15f, 0.f);
+        if (m2p == 211 && mon2.getPosition().x > 347 && mon2.getPosition().x < 349)m2p = 221;
+        if (m2p == 221)mon2.move(0.f, -0.15f);
+        if (m2p == 221 && mon2.getPosition().y > 545 && mon2.getPosition().y < 547)m2p = 231;
+        if (m2p == 231)mon2.move(0.15f, 0.f);
+        if (m2p == 231 && mon2.getPosition().x > 417.f && mon2.getPosition().x < 422.f)m2p = 41;
+        if (m2p == 61 && shapeSprite.getPosition().y < mon2.getPosition().y)m2p = 611;
+        if (m2p == 611)mon2.move(0.f, -0.15f);
+        if (m2p == 611 && mon2.getPosition().y > 188 && mon2.getPosition().y < 193)m2p = 81;
+        if (m2p == 81)mon2.move(-0.15f, 0.f);
+        if (m2p == 81 && mon2.getPosition().x > 208 && mon2.getPosition().x < 211)m2p = 92;
+        if (m2p == 92)mon2.move(0.f, 0.15f);
+        if (m2p == 92 && mon2.getPosition().y > 257 && mon2.getPosition().y < 261)m2p = 102;
+        if (m2p == 102)mon2.move(0.15f, 0.f);
+        if (m2p == 102 && mon2.getPosition().x > 277 && mon2.getPosition().x < 281)m2p = 112;
+        if (m2p == 112)mon2.move(0.f, 0.15f);
+        if (m2p == 112 && mon2.getPosition().y > 332 && mon2.getPosition().y < 335)m2p = 122;
+        if (m2p == 122 && mon2.getPosition().x > shapeSprite.getPosition().x)m2p = 1221;
+        if (m2p == 1221)mon2.move(-0.15f, 0.f);
+        if (m2p == 1221 && mon2.getPosition().x > 200.f && mon2.getPosition().x < 205.f) m2p = 22;
+        if (m2p == 122 && mon2.getPosition().x < shapeSprite.getPosition().x)m2p = 1222;
+        if (m2p == 1222)mon2.move(0.15f, 0.f);
+        if (m2p == 1222 && mon2.getPosition().x > 417.f && mon2.getPosition().x < 422.f) m2p = 21;
+        if (m2p == 22 && mon2.getPosition().y > 402.f && mon2.getPosition().y < 406.f)m2p = 32;
+        if (m2p == 32) mon2.move(0.f, 0.15f);
+        if (m2p == 32 && mon2.getPosition().y < 547 && mon2.getPosition().y>544)m2p = 42;
+        if (m2p == 42)mon2.move(-0.15f, 0.f);
+        if (m2p == 42 && mon2.getPosition().x > 134.f && mon2.getPosition().x < 136.f)m2p = 62;
+        if (m2p == 62 && shapeSprite.getPosition().y > mon2.getPosition().y)m2p = 622;
+        if (m2p == 622)mon2.move(0.f, 0.15f);
+        if (m2p == 622 && mon2.getPosition().y > 689 && mon2.getPosition().y < 692)m2p = 152;
+        if (m2p == 152)mon2.move(-0.15f, 0.f);
+        if (m2p == 152 && mon2.getPosition().x > 15 && mon2.getPosition().x < 17)m2p = 162;
+        if (m2p == 162)mon2.move(0.f, 0.15f);
+        if (m2p == 162 && mon2.getPosition().y > 764 && mon2.getPosition().y < 766)m2p = 172;
+        if (m2p == 172)mon2.move(0.15f, 0.f);
+        if (m2p == 172 && mon2.getPosition().x > 278 && mon2.getPosition().x < 281)m2p = 182;
+        if (m2p == 182)mon2.move(0.f, -0.15f);
+        if (m2p == 182 && mon2.getPosition().y > 694 && mon2.getPosition().y < 697)m2p = 192;
+        if (m2p == 192)mon2.move(-0.15f, 0.f);
+        if (m2p == 192 && mon2.getPosition().x > 203 && mon2.getPosition().x < 205)m2p = 202;
+        if (m2p == 202)mon2.move(0.f, -0.15f);
+        if (m2p == 202 && mon2.getPosition().y > 618 && mon2.getPosition().y < 620)m2p = 212;
+        if (m2p == 212)mon2.move(0.15f, 0.f);
+        if (m2p == 212 && mon2.getPosition().x > 277 && mon2.getPosition().x < 279)m2p = 222;
+        if (m2p == 222)mon2.move(0.f, -0.15f);
+        if (m2p == 222 && mon2.getPosition().y > 545 && mon2.getPosition().y < 547)m2p = 232;
+        if (m2p == 232)mon2.move(-0.15f, 0.f);
+        if (m2p == 232 && mon2.getPosition().x > 208.f && mon2.getPosition().x < 211.f)m2p = 42;
+        if (m2p == 62 && shapeSprite.getPosition().y < mon2.getPosition().y)m2p = 621;
+        if (m2p == 621)mon2.move(0.f, -0.15f);
+        if (m2p == 621 && mon2.getPosition().y > 188 && mon2.getPosition().y < 193)m2p = 82;
+        if (m2p == 82)mon2.move(0.15f, 0.f);
+        if (m2p == 82 && mon2.getPosition().x > 420 && mon2.getPosition().x < 424)m2p = 91;
+        if (m2p == 91)mon2.move(0.f, 0.15f);
+        if (m2p == 91 && mon2.getPosition().y > 257 && mon2.getPosition().y < 261)m2p = 101;
+        if (m2p == 101)mon2.move(-0.15f, 0.f);
+        if (m2p == 101 && mon2.getPosition().x > 344 && mon2.getPosition().x < 348)m2p = 111;
+        if (m2p == 111)mon2.move(0.f, 0.15f);
+        if (m2p == 111 && mon2.getPosition().y > 332 && mon2.getPosition().y < 335)m2p = 121;
+        if (m2p == 121 && mon2.getPosition().x > shapeSprite.getPosition().x)m2p = 1211;
+        if (m2p == 1211)mon2.move(-0.15f, 0.f);
+        if (m2p == 1211 && mon2.getPosition().x > 204.f && mon2.getPosition().x < 207.f) m2p = 22;
+        if (m2p == 121 && mon2.getPosition().x < shapeSprite.getPosition().x)m2p = 1212;
+        if (m2p == 1212)mon2.move(0.15f, 0.f);
+        if (m2p == 1212 && mon2.getPosition().x > 417.f && mon2.getPosition().x < 422.f) m2p = 21;
+        printf("%f %f %d\n", mon2.getPosition().x, mon2.getPosition().y,m2p);
     }
     return 0;
 }
