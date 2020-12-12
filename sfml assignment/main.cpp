@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 int main()
 {
@@ -11,6 +12,8 @@ int main()
     float itemspeedtime = 0;
     float itemspeed = 0;
     sf::RenderWindow window(sf::VideoMode(672, 820), "DragMan");
+    sf::Music whywe;
+    whywe.openFromFile()
     ////// Texture
     sf::Texture playerTexture;
     if (!playerTexture.loadFromFile("image/playercharacter.png"))
