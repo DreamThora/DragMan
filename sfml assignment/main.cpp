@@ -1079,6 +1079,8 @@ int main()
                     menu = 5;
                 }
                 if (score >= 194) menu = 4;
+                if (menu == 1 && sf::Keyboard::isKeyPressed(sf::Keyboard::F5)) menu = 4;
+                if (menu == 2 && sf::Keyboard::isKeyPressed(sf::Keyboard::F6)) menu = 5;
                 
             }
         }
